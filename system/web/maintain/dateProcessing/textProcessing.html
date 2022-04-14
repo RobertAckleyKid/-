@@ -1,0 +1,143 @@
+<!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>网络理政系统</title>
+  <meta name="description" content="">
+  <meta name="author" content="templatemo">
+  <link rel="shortcut icon" href="../../images/afavicon.ico">
+  <link href="../../css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/templatemo-style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/iziToast.min.css">
+  <link href="../../css/showLoading.css" rel="stylesheet">
+
+  <link href="../../css/dataTables.bootstrap.css" rel="stylesheet">
+<style>
+  /*body{*/
+  /*  overflow-y: hidden;*/
+  /*}*/
+  .my-roll::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+</head>
+<body style="scroll:no">
+<!-- Left column -->
+<div class="templatemo-flex-row">
+  <div class="my-templatemo-sidebar">
+    <header class="templatemo-site-header">
+      <div class="square"></div>
+      <h1>网络理政系统</h1>
+    </header>
+    <div class="profile-photo-container">
+      <img src="../../images/政府工作.png" alt="Profile Photo" class="img-responsive" style="width: 250px;height: 160px">
+      <div class="profile-photo-overlay"></div>
+    </div>
+    <!-- Search box -->
+<!--    <form class="templatemo-search-form" role="search">-->
+<!--      <div class="input-group">-->
+<!--        <button type="submit" class="fa fa-search"></button>-->
+<!--        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">-->
+<!--      </div>-->
+<!--    </form>-->
+    <div class="mobile-menu-icon">
+      <i class="fa fa-bars"></i>
+    </div>
+    <nav class="templatemo-left-nav">
+      <ul>
+        <li><a href="../main/index.html" ><i class="fa fa-home fa-fw"></i>数据选择</a></li>
+<!--        <li><a href="../db/management.html" ><i class="fa fa-database fa-fw"></i>数据库</a></li>-->
+        <li><a href="#" class="active"><i class="fa fa-sliders fa-fw"></i>数据处理</a></li>
+        <li><a href="../visualization/visualization.html"><i class="fa fa-bar-chart fa-fw"></i>数据概览</a></li>
+        <li><a href="../management/management.html"><i class="fa fa-users fa-fw"></i>应用管理</a></li>
+
+      </ul>
+    </nav>
+
+  </div>
+  <!-- Main content -->
+  <div class="templatemo-content col-1 light-gray-bg" style="height: 100vmin" id="loading">
+    <div class="templatemo-top-nav-container">
+      <div class="row">
+        <nav class="templatemo-top-nav col-lg-12 col-md-12">
+          <ul class="text-uppercase">
+            <li><a href="#" class="active">数据处理</a></li>
+            <li><a href="#" id="select_name"></a></li>
+            <li><a href="#" id="total_number"></a></li>
+            <li><a href="#" ></a>&nbsp;</li>
+            <li style="position: fixed;right: 20px"><img id="mySelect" title="我的选择" style="width: 30px;height: 30px;cursor: pointer" src="../../images/head.png"></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div id="buttons">
+<!--      <div class="form-group text-right">-->
+<!--      <div class="form-group">-->
+<!--        <button type="button" class="templatemo-blue-button">全部统计</button>-->
+<!--        <button type="button" class="templatemo-white-button">关键词统计</button>-->
+<!--        <button type="button" class="templatemo-white-button">分词、词频统计</button>-->
+<!--        <button type="button" class="templatemo-white-button">分词、结果</button>-->
+<!--        <button type="button" class="templatemo-white-button">主题词</button>-->
+<!--      </div>-->
+    </div>
+    <div class="templatemo-flex-row flex-content-row">
+      <div style="width:82vmax;background-color: white;margin: 2vmin;margin-bottom:0px;padding: 1vmin;display:inline-block;" id="table_show" class="dataTables_wrapper">
+<!--        130vmin-->
+      </div>
+      <div class="white-bg col-1 my-roll" style=" display:inline-block;margin-top: 2vmin;margin-bottom: 0px;height: 87vmin;width:13vmax;" id="process_show">
+<!--        overflow-y: auto; overflow-x: hidden;-->
+      </div>
+    </div>
+    <div class="modal fade draggable-modal row form-group col-lg-7" id="choose_select" name="choose_select"  tabindex="-1" role="basic" aria-hidden="true" style="left: 50%;top:50%;transform: translate(-50%, -50%);">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="choose_tittle">请选择要展示的数据</h4>
+          </div>
+          <div class="modal-body">
+            <div class="portlet-body form">
+              <form class="form-horizontal" role="form">
+                <div class="form-body">
+                  <div class="form-group" id="choose_content">
+
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn default" data-dismiss="modal">取消</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/iziToast.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.showLoading.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>  <!-- http://markusslima.github.io/bootstrap-filestyle/ -->
+
+<script type="text/javascript" src="../../js/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+        src="../../js/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+<script type="text/javascript"
+        src="../../js/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
+<script type="text/javascript"
+        src="../../js/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>
+<script type="text/javascript"
+        src="../../js/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+<script src="../../js/papaparse.min.js"></script>
+<script type="text/javascript" src="textP.js"></script>
+
+</html>
+

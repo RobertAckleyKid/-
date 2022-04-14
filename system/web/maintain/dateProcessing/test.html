@@ -1,0 +1,541 @@
+<!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>网络理政系统</title>
+  <meta name="description" content="">
+  <meta name="author" content="templatemo">
+  <link rel="shortcut icon" href="../../images/afavicon.ico">
+  <link href="../../css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/templatemo-style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/iziToast.min.css">
+  <link href="../../css/showLoading.css" rel="stylesheet">
+
+  <link href="../../css/dataTables.bootstrap.css" rel="stylesheet">
+<style>
+  /*#table_show .dataTables_wrapper {*/
+  /*  position: relative;*/
+  /*  clear: both;*/
+  /*  zoom: 1;*/
+  /*  overflow-x: auto;*/
+  /*}*/
+
+  /*#table_show table{*/
+  /*  width: 200vmin;*/
+  /*}*/
+</style>
+</head>
+<body>
+<!-- Left column -->
+<div class="templatemo-flex-row">
+  <div class="my-templatemo-sidebar">
+    <header class="templatemo-site-header">
+      <div class="square"></div>
+      <h1>网络理政系统</h1>
+    </header>
+    <div class="profile-photo-container">
+      <img src="../../images/政府工作.png" alt="Profile Photo" class="img-responsive" style="width: 250px;height: 160px">
+      <div class="profile-photo-overlay"></div>
+    </div>
+    <div class="mobile-menu-icon">
+      <i class="fa fa-bars"></i>
+    </div>
+    <nav class="templatemo-left-nav">
+      <ul>
+        <li><a href="../main/index.html" ><i class="fa fa-home fa-fw"></i>数据选择</a></li>
+<!--        <li><a href="../db/management.html" ><i class="fa fa-database fa-fw"></i>数据库</a></li>-->
+        <li><a href="#" class="active"><i class="fa fa-sliders fa-fw"></i>数据处理</a></li>
+        <li><a href="../visualization/visualization.html"><i class="fa fa-bar-chart fa-fw"></i>数据概览</a></li>
+        <li><a href="../management/management.html"><i class="fa fa-users fa-fw"></i>应用管理</a></li>
+
+      </ul>
+    </nav>
+
+  </div>
+  <!-- Main content -->
+  <div class="templatemo-content col-1 light-gray-bg" style="height: 100vmin" id="loading">
+    <div class="templatemo-top-nav-container">
+      <div class="row">
+        <nav class="templatemo-top-nav col-lg-12 col-md-12">
+          <ul class="text-uppercase">
+            <li><a href="#" class="active">原始数据</a></li>
+            <li><a href="./dateProcessing.html">数据处理</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div id="buttons">
+      <!--      <div class="form-group text-right">-->
+      <!--      <div class="form-group">-->
+      <!--        <button type="button" class="templatemo-blue-button">全部统计</button>-->
+      <!--        <button type="button" class="templatemo-white-button">关键词统计</button>-->
+      <!--        <button type="button" class="templatemo-white-button">分词、词频统计</button>-->
+      <!--        <button type="button" class="templatemo-white-button">分词、结果</button>-->
+      <!--        <button type="button" class="templatemo-white-button">主题词</button>-->
+      <!--      </div>-->
+    </div>
+    <div class="templatemo-flex-row flex-content-row">
+      <div style="width: 130vmin; background-color: white; margin: 2vmin; padding: 1vmin; display:inline-block;"
+           id="table_show"
+           class="dataTables_wrapper">
+        <div class="form-group">
+          <button type="button" class="templatemo-white-button" id="process1" style="margin-right: 3vmin ">关键词统计
+          </button>
+          <button type="button" class="templatemo-white-button" id="process2" style="margin-right: 3vmin ">分词、词频统计
+          </button>
+          <button type="button" class="templatemo-white-button" id="process3" style="margin-right: 3vmin ">分词、结果
+          </button>
+          <button type="button" class="templatemo-white-button" id="process4" style="margin-right: 3vmin ">主题词</button>
+        </div>
+        <div id="database_wrapper" class="dataTables_wrapper no-footer">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="dataTables_length" id="database_length"><label> <select name="database_length"
+                                                                                  aria-controls="database"
+                                                                                  class="form-control input-xsmall input-inline">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select> records </label></div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div id="database_filter" class="dataTables_filter"><label>Search:<input type="search"
+                                                                                       class="form-control input-small input-inline"
+                                                                                       placeholder=""
+                                                                                       aria-controls="database"></label>
+              </div>
+            </div>
+          </div>
+          <div class="table-scrollable">
+            <div class="dataTables_scroll">
+              <div class="dataTables_scrollHead"
+                   style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+                <div class="dataTables_scrollHeadInner"
+                     style="box-sizing: content-box; width: 13846px; padding-right: 0px;">
+                  <table class="table templatemo-user-table table-striped table-bordered table-hover dataTable no-footer"
+                         style="white-space: nowrap; margin-left: 0px; width: 13846px;" role="grid">
+                    <thead>
+                    <tr role="row">
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="序号: activate to sort column ascending" style="width: 26px;">序号
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="标题: activate to sort column ascending" style="width: 339px;">标题
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="类别1: activate to sort column ascending" style="width: 33px;">类别1
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="类别2: activate to sort column ascending" style="width: 35px;">类别2
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="市: activate to sort column ascending" style="width: 78px;">市
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="区: activate to sort column ascending" style="width: 91px;">区
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="提问内容: activate to sort column ascending" style="width: 3162px;">提问内容
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="提问长度: activate to sort column ascending" style="width: 52px;">提问长度
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="提问时间: activate to sort column ascending" style="width: 104px;">提问时间
+                      </td>
+                      <td id="need_clickw" class="sorting_asc" tabindex="0" aria-controls="database" rowspan="1"
+                          colspan="1" aria-label="回答个数: activate to sort column ascending" style="width: 52px;"
+                          aria-sort="ascending">回答个数
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="回答部门: activate to sort column ascending" style="width: 221px;">回答部门
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="回答内容: activate to sort column ascending" style="width: 8772px;">回答内容
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="回答长度: activate to sort column ascending" style="width: 52px;">回答长度
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="回答时间: activate to sort column ascending" style="width: 104px;">回答时间
+                      </td>
+                      <td class="sorting" tabindex="0" aria-controls="database" rowspan="1" colspan="1"
+                          aria-label="网址链接: activate to sort column ascending" style="width: 259px;">网址链接
+                      </td>
+                    </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+              <div class="dataTables_scrollBody" style="overflow: auto; width: 100%;">
+                <table class="table templatemo-user-table table-striped table-bordered table-hover dataTable no-footer"
+                       id="database" style="white-space: nowrap; width: 13846px;" role="grid"
+                       aria-describedby="database_info">
+                  <thead>
+                  <tr role="row" style="height: 0px;">
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="序号: activate to sort column ascending"
+                        style="width: 26px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">序号</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="标题: activate to sort column ascending"
+                        style="width: 339px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">标题</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="类别1: activate to sort column ascending"
+                        style="width: 33px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">类别1</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="类别2: activate to sort column ascending"
+                        style="width: 35px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">类别2</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="市: activate to sort column ascending"
+                        style="width: 78px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">市</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="区: activate to sort column ascending"
+                        style="width: 91px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">区</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="提问内容: activate to sort column ascending"
+                        style="width: 3162px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">提问内容</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="提问长度: activate to sort column ascending"
+                        style="width: 52px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">提问长度</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="提问时间: activate to sort column ascending"
+                        style="width: 104px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">提问时间</div>
+                    </td>
+                    <td id="need_click" class="sorting_asc" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="回答个数: activate to sort column ascending"
+                        style="width: 52px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"
+                        aria-sort="ascending">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">回答个数</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="回答部门: activate to sort column ascending"
+                        style="width: 221px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">回答部门</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="回答内容: activate to sort column ascending"
+                        style="width: 8772px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">回答内容</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="回答长度: activate to sort column ascending"
+                        style="width: 52px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">回答长度</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="回答时间: activate to sort column ascending"
+                        style="width: 104px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">回答时间</div>
+                    </td>
+                    <td class="sorting" aria-controls="database" rowspan="1" colspan="1"
+                        aria-label="网址链接: activate to sort column ascending"
+                        style="width: 259px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                      <div class="dataTables_sizing" style="height:0;overflow:hidden;">网址链接</div>
+                    </td>
+                  </tr>
+                  </thead>
+
+                  <tbody id="database_content" name="database_content">
+                  <tr role="row" class="odd">
+                    <td class="">1</td>
+                    <td>人民医院背后的青鹰街</td>
+                    <td>拆迁</td>
+                    <td>咨询</td>
+                    <td>成都</td>
+                    <td>蒲江县</td>
+                    <td>家住县医院旁的青鹰街，这里的房子已经年久失修，常年漏雨，路本就窄许多去医院的人还把车停到巷子里来造成拥堵，生活住宿条件很差，请问这个片区有没有棚改计划呢？</td>
+                    <td>77</td>
+                    <td>2022-03-06 00:02</td>
+                    <td class="sorting_1">0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <a href="https://ly.scol.com.cn//thread?tid=2943528">https://ly.scol.com.cn//thread?tid=2943528</a>
+                    </td>
+                  </tr>
+                  <tr role="row" class="even">
+                    <td class="">2</td>
+                    <td>如何更改医保里的参保地</td>
+                    <td>医疗</td>
+                    <td>求助</td>
+                    <td>成都</td>
+                    <td>锦江区</td>
+                    <td>你好，本人户籍在眉山，起初在成都购买过居民医保，但是医保里参保地是眉山，切换不了成都，也无法进行电子医保卡消费，请问该如何解决了？</td>
+                    <td>65</td>
+                    <td>2022-03-06 00:19</td>
+                    <td class="sorting_1">0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <a href="https://ly.scol.com.cn//thread?tid=2943529">https://ly.scol.com.cn//thread?tid=2943529</a>
+                    </td>
+                  </tr>
+                  <tr role="row" class="odd">
+                    <td class="">3</td>
+                    <td>货运大道新新路口严重拥堵</td>
+                    <td>交通</td>
+                    <td>建言</td>
+                    <td>成都</td>
+                    <td>新都区</td>
+                    <td>
+                      货运大道新新路口鸿运大道路口新军路口一直以来就拥堵加上金凤凰高架通车后拥堵极为严重建议有关部门领导把货运大道现有的左转弯车道改为直行加左转弯尤其是新新路口另外硬化绿化带几十米加一条专用左转弯车道可大大缓解货运大道的通行能力
+                    </td>
+                    <td>111</td>
+                    <td>2022-03-06 00:32</td>
+                    <td class="sorting_1">0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <a href="https://ly.scol.com.cn//thread?tid=2943530">https://ly.scol.com.cn//thread?tid=2943530</a>
+                    </td>
+                  </tr>
+                  <tr role="row" class="even">
+                    <td class="">4</td>
+                    <td>社保、医保求助</td>
+                    <td>医疗</td>
+                    <td>求助</td>
+                    <td>成都</td>
+                    <td>青羊区</td>
+                    <td>
+                      领导，您好！本人户籍地为遂宁市，起初在遂宁是购买了城乡居民医疗保险，后来停缴后注销了。现在在成都市青羊区缴纳社保，也在成都申请了新的社保卡。但是我的电子社保卡和医保电子凭证依旧显示的是遂宁市，且无法选择成都，也无法进行医保卡消费（电子医保卡和实体医保卡都不行），目前只能自费买药。请问应该怎么解决呢？
+                    </td>
+                    <td>150</td>
+                    <td>2022-03-06 00:34</td>
+                    <td class="sorting_1">0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <a href="https://ly.scol.com.cn//thread?tid=2943531">https://ly.scol.com.cn//thread?tid=2943531</a>
+                    </td>
+                  </tr>
+                  <tr role="row" class="odd">
+                    <td class="">5</td>
+                    <td>医保电子凭证无法切换参保地</td>
+                    <td>医疗</td>
+                    <td>求助</td>
+                    <td>成都</td>
+                    <td>高新区</td>
+                    <td>
+                      一直在高新区社保局参保，之前医保都是正常可使用的，去年11月起发现医保电子凭证不能使用了，当时打电话咨询，说是网上系统要统一更新数据什么的，让我耐心等待，可是三四个月了，还是无法使用，求助一下该怎么办呢？
+                    </td>
+                    <td>102</td>
+                    <td>2022-03-06 00:37</td>
+                    <td class="sorting_1">0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <a href="https://ly.scol.com.cn//thread?tid=2943532">https://ly.scol.com.cn//thread?tid=2943532</a>
+                    </td>
+                  </tr>
+                  <tr role="row" class="even">
+                    <td class="">6</td>
+                    <td>四川省会什么时候将试管婴儿纳入医保？</td>
+                    <td>医疗</td>
+                    <td>咨询</td>
+                    <td>成都</td>
+                    <td>市长王凤朝</td>
+                    <td>北京已经将试管婴儿纳入医保，成都市会把试管婴儿纳入医保吗？会是什么时候？</td>
+                    <td>36</td>
+                    <td>2022-03-06 01:42</td>
+                    <td class="sorting_1">0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <a href="https://ly.scol.com.cn//thread?tid=2943534">https://ly.scol.com.cn//thread?tid=2943534</a>
+                    </td>
+                  </tr>
+                  <tr role="row" class="odd">
+                    <td class="">7</td>
+                    <td>锦江区工地噪音问题多次投诉无果</td>
+                    <td>城建</td>
+                    <td>投诉</td>
+                    <td>成都</td>
+                    <td>锦江区</td>
+                    <td></td>
+                    <td>0</td>
+                    <td>2022-03-06 01:43</td>
+                    <td class="sorting_1">0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <a href="https://ly.scol.com.cn//thread?tid=2943535">https://ly.scol.com.cn//thread?tid=2943535</a>
+                    </td>
+                  </tr>
+                  <tr role="row" class="even">
+                    <td class="">9</td>
+                    <td>请问林荫街15号院有没有拆迁计划</td>
+                    <td>拆迁</td>
+                    <td>咨询</td>
+                    <td>成都</td>
+                    <td>武侯区</td>
+                    <td>请问林荫路15号院有没有拆迁计划？此房屋为危房，每户都没有单独的厕所，使用起来不仅不方便，还相当的危险⚠️</td>
+                    <td>53</td>
+                    <td>2022-03-06 01:51</td>
+                    <td class="sorting_1">0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <a href="https://ly.scol.com.cn//thread?tid=2943537">https://ly.scol.com.cn//thread?tid=2943537</a>
+                    </td>
+                  </tr>
+                  <tr role="row" class="odd">
+                    <td class="">11</td>
+                    <td>建设工地夜间施工噪音投诉</td>
+                    <td>城建</td>
+                    <td>投诉</td>
+                    <td>成都</td>
+                    <td>温江区</td>
+                    <td>
+                      尊敬的领导：恒大城小区外（政通西路公交站旁边）的建设工地夜间施工造成严重噪音，影响居民夜间休息。根据相关法律，若没有主管部门的特别批准，建设工地夜间（22点至6点）不能施工。特请求相关部门予以核实解决！谢谢
+                    </td>
+                    <td>103</td>
+                    <td>2022-03-06 02:11</td>
+                    <td class="sorting_1">0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <a href="https://ly.scol.com.cn//thread?tid=2943539">https://ly.scol.com.cn//thread?tid=2943539</a>
+                    </td>
+                  </tr>
+                  <tr role="row" class="even">
+                    <td class="">12</td>
+                    <td>半夜破拆扰民</td>
+                    <td>城建</td>
+                    <td>投诉</td>
+                    <td>成都</td>
+                    <td>武侯区</td>
+                    <td>2022年3月6日，西三环路一段内侧太平园中四路附近半夜2点过机械破拆路面，噪声实在太大，深夜扰民，纯粹是野蛮施工。</td>
+                    <td>58</td>
+                    <td>2022-03-06 03:01</td>
+                    <td class="sorting_1">0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      <a href="https://ly.scol.com.cn//thread?tid=2943541">https://ly.scol.com.cn//thread?tid=2943541</a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5 col-sm-5">
+              <div class="dataTables_info" id="database_info" role="status" aria-live="polite">Showing 1 to 10 of 478
+                entries
+              </div>
+            </div>
+            <div class="col-md-7 col-sm-7">
+              <div class="dataTables_paginate paging_simple_numbers" id="database_paginate">
+                <ul class="pagination">
+                  <li class="paginate_button previous disabled" aria-controls="database" tabindex="0"
+                      id="database_previous"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                  <li class="paginate_button active" aria-controls="database" tabindex="0"><a href="#">1</a></li>
+                  <li class="paginate_button " aria-controls="database" tabindex="0"><a href="#">2</a></li>
+                  <li class="paginate_button " aria-controls="database" tabindex="0"><a href="#">3</a></li>
+                  <li class="paginate_button " aria-controls="database" tabindex="0"><a href="#">4</a></li>
+                  <li class="paginate_button " aria-controls="database" tabindex="0"><a href="#">5</a></li>
+                  <li class="paginate_button disabled" aria-controls="database" tabindex="0" id="database_ellipsis"><a
+                          href="#">…</a></li>
+                  <li class="paginate_button " aria-controls="database" tabindex="0"><a href="#">48</a></li>
+                  <li class="paginate_button next" aria-controls="database" tabindex="0" id="database_next"><a href="#"><i
+                          class="fa fa-angle-right"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  process  -->
+      <!--    <div class="templatemo-content-widget white-bg col-2">-->
+
+      <div class="white-bg col-2" style=" display:inline-block;margin-top: 2vmin;margin-bottom: 2vmin;">
+        <div class="media margin-bottom-30">
+          <div class="media-left padding-right-25">
+          </div>
+          <div class="media-body">
+            <br>
+            <h2 class="media-heading text-uppercase blue-text">关键词统计</h2>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+            <tr>
+              <td>
+                <div class="circle green-bg"></div>
+              </td>
+              <td>New Task Issued</td>
+              <td>02</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/iziToast.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.showLoading.min.js"></script>
+
+<script type="text/javascript" src="../../js/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+        src="../../js/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+<script type="text/javascript"
+        src="../../js/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
+<script type="text/javascript"
+        src="../../js/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>
+<script type="text/javascript"
+        src="../../js/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+<script src="../../js/papaparse.min.js"></script>
+<!--<script type="text/javascript" src="textP.js"></script>-->
+
+</html>
+

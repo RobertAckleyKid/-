@@ -1,0 +1,76 @@
+<!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>网络理政系统</title>
+  <meta name="description" content="">
+  <meta name="author" content="templatemo">
+  <link rel="shortcut icon" href="../../images/afavicon.ico">
+  <link href="../../css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/templatemo-style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/iziToast.min.css">
+  <link href="../../css/showLoading.css" rel="stylesheet">
+
+</head>
+<body>
+<!-- Left column -->
+<div class="templatemo-flex-row">
+  <div class="my-templatemo-sidebar">
+    <header class="templatemo-site-header">
+      <div class="square"></div>
+      <h1>网络理政系统</h1>
+    </header>
+    <div class="profile-photo-container">
+      <img src="../../images/政府工作.png" alt="Profile Photo" class="img-responsive" style="width: 250px;height: 160px">
+      <div class="profile-photo-overlay"></div>
+    </div>
+    <!-- Search box -->
+<!--    <form class="templatemo-search-form" role="search">-->
+<!--      <div class="input-group">-->
+<!--        <button type="submit" class="fa fa-search"></button>-->
+<!--        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">-->
+<!--      </div>-->
+<!--    </form>-->
+    <div class="mobile-menu-icon">
+      <i class="fa fa-bars"></i>
+    </div>
+    <nav class="templatemo-left-nav">
+      <ul>
+        <li><a href="../main/index.html" ><i class="fa fa-home fa-fw"></i>数据采集</a></li>
+<!--        <li><a href="../db/management.html" ><i class="fa fa-database fa-fw"></i>数据库</a></li>-->
+        <li><a href="#" class="active"><i class="fa fa-sliders fa-fw"></i>数据处理</a></li>
+        <li><a href="../visualization/visualization.html"><i class="fa fa-bar-chart fa-fw"></i>数据概览</a></li>
+        <li><a href="../management/management.html"><i class="fa fa-users fa-fw"></i>应用管理</a></li>
+
+      </ul>
+    </nav>
+
+  </div>
+  <!-- Main content -->
+  <div class="templatemo-content col-1 light-gray-bg" style="height: 100vmin">
+    <div class="templatemo-top-nav-container">
+      <div class="row">
+        <nav class="templatemo-top-nav col-lg-12 col-md-12">
+          <ul class="text-uppercase">
+            <li><a href="./textProcessing.html" >文本预处理</a></li>
+            <li><a href="#" class="active">数据处理</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <button type="button" id="request" >开始测试</button>
+    <div id="showRes"></div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/iziToast.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.showLoading.min.js"></script>
+<script type="text/javascript" src="textP.js"></script>
+
+</html>
+

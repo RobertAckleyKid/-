@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>网络理政系统</title>
+    <meta name="description" content="">
+    <meta name="author" content="templatemo">
+    <link rel="shortcut icon" href="../../images/afavicon.ico">
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/templatemo-style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/iziToast.min.css">
+    <link href="../../css/showLoading.css" rel="stylesheet">
+
+</head>
+<body class="light-gray-bg">
+<input type="hidden" value="register" id="page_id">
+<div class="templatemo-content-widget templatemo-login-widget white-bg" style="max-width: 500px;">
+    <header class="text-center">
+        <div class="square"></div>
+        <h1>网络理政系统</h1>
+    </header>
+    <form  class="templatemo-login-form" id="register_from">
+        <div class="form-group">
+            <label>设置账号</label>
+            <input type="text" class="form-control" id="username" placeholder="用于登录的账户名">
+        </div>
+        <div class="form-group">
+            <label >设置密码</label>
+            <input type="password" class="form-control"  id="password" placeholder="***********">
+            <p style="color: #676666;size: 0.8em">须包含大小写字母和数字的组合，长度在8-16之间</p>
+        </div>
+        <div class="form-group">
+            <label >重复密码</label>
+            <input type="password" class="form-control" id="password2" placeholder="***********">
+        </div>
+        <div class="form-group">
+            <label >绑定邮箱</label>
+            <input type="email" class="form-control" id="email" placeholder="输入邮箱">
+        </div>
+        <div class="form-group">
+            <label >验证码</label>
+            <div>
+                <input  class="form-control" id="code" placeholder="输入验证码" style="float: left;width: 200px;">
+                <button type="button" id="getCode" class="templatemo-white-button width-100" style="float: right;width:180px;height: 34px;margin-left: 20px;">获取验证码</button>
+            </div>
+            <p>&nbsp</p>
+        </div>
+<!--        <div class="form-group">-->
+<!--            &lt;!&ndash;            <span id="notice" class="hide">请先完成邮箱验证</span><br />&ndash;&gt;-->
+<!--            <span id="notice" class="hide">请先完成邮箱验证</span><br />-->
+<!--        </div>-->
+        <div class="form-group">
+            <button type="button" id="register-btn" class="templatemo-blue-button width-100">注册</button>
+        </div>
+
+    </form>
+</div>
+<div class="templatemo-content-widget templatemo-login-widget templatemo-register-widget white-bg" style="max-width: 500px;">
+    <p><strong><a href="login.html" class="blue-text">返回登录</a></strong></p>
+</div>
+
+</body>
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/iziToast.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.showLoading.min.js"></script>
+<script type="text/javascript" src="login.js"></script>
+
+</html>

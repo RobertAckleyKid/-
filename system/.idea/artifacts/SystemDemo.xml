@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SystemDemo">
+    <output-path>$PROJECT_DIR$/out/artifacts/SystemDemo</output-path>
+    <root id="archive" name="SystemDemo.war">
+      <element id="artifact" artifact-name="pythonTest:war exploded" />
+    </root>
+  </artifact>
+</component>

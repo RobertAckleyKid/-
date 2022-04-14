@@ -1,0 +1,254 @@
+<!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>网络理政系统</title>
+  <meta name="description" content="">
+  <meta name="author" content="templatemo">
+  <link rel="shortcut icon" href="../../images/afavicon.ico">
+  <link href="../../css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/templatemo-style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/iziToast.min.css">
+  <link href="../../css/showLoading.css" rel="stylesheet">
+
+</head>
+<body >
+<!-- Left column -->
+<div class="templatemo-flex-row">
+  <div class="my-templatemo-sidebar">
+    <header class="templatemo-site-header">
+      <div class="square"></div>
+      <h1>网络理政系统</h1>
+    </header>
+    <div class="profile-photo-container">
+      <img src="../../images/政府工作.png" alt="Profile Photo" class="img-responsive" style="width: 250px;height: 160px">
+      <div class="profile-photo-overlay"></div>
+    </div>
+    <!-- Search box -->
+<!--    <form class="templatemo-search-form" role="search">-->
+<!--      <div class="input-group">-->
+<!--        <button type="submit" class="fa fa-search"></button>-->
+<!--        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">-->
+<!--      </div>-->
+<!--    </form>-->
+    <div class="mobile-menu-icon">
+      <i class="fa fa-bars"></i>
+    </div>
+    <nav class="templatemo-left-nav">
+      <ul>
+        <li><a href="#" class="active"><i class="fa fa-home fa-fw"></i>数据选择</a></li>
+<!--        <li><a href="../db/management.html"><i class="fa fa-database fa-fw"></i>文本预处理</a></li>-->
+        <li><a href="../dateProcessing/textProcessing.html" ><i class="fa fa-sliders fa-fw"></i>数据处理</a></li>
+        <li><a href="../visualization/visualization.html"><i class="fa fa-bar-chart fa-fw"></i>数据概览</a></li>
+        <li><a href="../management/management.html"><i class="fa fa-users fa-fw"></i>应用管理</a></li>
+      </ul>
+    </nav>
+
+  </div>
+  <!-- Main content -->
+  <div class="templatemo-content col-1 light-gray-bg" style="height: 100vmin" id="loading">
+    <div class="templatemo-top-nav-container">
+      <div class="row">
+        <nav class="templatemo-top-nav col-lg-12 col-md-12">
+          <ul class="text-uppercase">
+            <li><a href="#ct1" class="active" >选择信息</a></li>
+            <li><a href="./mySelect.html">我的选择</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="templatemo-content-widget white-bg col-2" style="width: 90%;left: 3vmax;top:3vmax;">
+    <div class="col-2" id="ct1" style="padding: 10px;">
+      <div class="square"></div>
+      <h2 class="templatemo-inline-block">时间筛选</h2><hr>
+<!--      <p>用户可对采集进行自定义设置，比如初始URL、爬取的时间端、数据数量、终止条件等</p>-->
+      <div class="row form-group">
+        <div class="col-lg-7 col-md-7 form-group">
+          <div class="margin-right-15 templatemo-inline-block">
+           <label for="time_begin">起止时间</label>&nbsp;&nbsp;<text style="color: #707070">当日信息于次日凌晨00:30更新</text>
+           <input type="date" class="form-control" id="time_begin" placeholder="">
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <label for="as">&nbsp;</label>
+            <p  id="as">----</p>
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <label for="time_begin">&nbsp;&nbsp;<text style="color: white">起止时间当日信息于次日凌晨00:30更新</text></label>
+            <input type="date" class="form-control" id="time_end" placeholder="">
+          </div>
+        </div>
+      </div>
+    </div>
+<!--&lt;!&ndash;    <div class="templatemo-content-widget  col-2" id="ct2">&ndash;&gt;style="padding: 35px;"-->
+    <div class="col-2" id="ct2"  style="padding: 10px;">
+      <div class="square" style="vertical-align:middle;display:inline-block;"></div>
+      <h2 class="templatemo-inline-block" style="vertical-align:middle;display:inline-block;">机构筛选</h2>
+      <text class="my-no-check" id="allCheck">全选</text>
+      <hr>
+<!--      <p>用户可对采集进行自定义设置，比如初始URL、爬取的时间端、数据数量、终止条件等</p>-->
+      <div class="row form-group">
+        <div class="col-lg-12 form-group">
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c3" value="成都" checked="">
+            <label for="c3" class="font-weight-400"><span></span>成都</label>
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c4" value="德阳">
+            <label for="c4" class="font-weight-400"><span></span>德阳</label>
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c5" value="南充">
+            <label for="c5" class="font-weight-400"><span></span>南充</label>
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c6" value="广元">
+            <label for="c6" class="font-weight-400"><span></span>广元</label>
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c7" value="绵阳">
+            <label for="c7" class="font-weight-400"><span></span>绵阳</label>
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c8" value="省级政府部门" checked="">
+            <label for="c8" class="font-weight-400"><span></span>省级政府部门</label>
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c9" value="乐山">
+            <label for="c9" class="font-weight-400"><span></span>乐山</label>
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c10" value="巴中">
+            <label for="c10" class="font-weight-400"><span></span>巴中</label>
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c14" value="内江">
+            <label for="c14" class="font-weight-400"><span></span>内江</label>
+            <!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+
+
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-12 form-group">
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c15" value="广安">
+            <label for="c15" class="font-weight-400"><span></span>广安</label>
+            <!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c16" value="天府新区">
+            <label for="c16" class="font-weight-400"><span></span>天府新区</label>
+<!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c17" value="泸州">
+            <label for="c17" class="font-weight-400"><span></span>泸州</label>
+<!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c18" value="达州">
+            <label for="c18" class="font-weight-400"><span></span>达州</label>
+            <!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c19" value="眉山">
+            <label for="c19" class="font-weight-400"><span></span>眉山</label>
+            <!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c20" value="遂宁">
+            <label for="c20" class="font-weight-400"><span></span>遂宁</label>
+            <!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c21" value="宜宾">
+            <label for="c21" class="font-weight-400"><span></span>宜宾</label>
+            <!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c22" value="阿坝">
+            <label for="c22" class="font-weight-400"><span></span>阿坝</label>
+            <!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c23" value="凉山">
+            <label for="c23" class="font-weight-400"><span></span>凉山</label>
+            <!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-lg-12 form-group">
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c24" value="攀枝花">
+            <label for="c24" class="font-weight-400"><span></span>攀枝花</label>
+            <!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c25" value="资阳">
+            <label for="c25" class="font-weight-400"><span></span>资阳</label>
+          </div>
+          <div class="margin-right-15 templatemo-inline-block">
+            <input type="checkbox" name="url" id="c27" value="自贡">
+            <label for="c27" class="font-weight-400"><span></span>自贡</label>
+<!--            <img src="../../images/11.png" style="width: 70%;height: 70%">-->
+          </div>
+        </div>
+      </div>
+    </div>
+<!--    <div class="col-2" id="ct3"  style="padding: 10px;">-->
+<!--      <div class="square"></div>-->
+<!--      <h2 class="templatemo-inline-block">数据采集</h2><hr>-->
+<!--      <p>用户可对采集进行自定义设置，比如初始URL、爬取的时间端、数据数量、终止条件等</p>-->
+<!--    </div>-->
+    <div class="form-group text-right" style="width:90%">
+      <button type="button" class="templatemo-blue-button" id="request" >开始采集</button>
+    </div>
+    <div id="showRes"></div>
+    </div>
+    <div class="modal fade draggable-modal row form-group col-lg-7" id="name_select" name="name_select"  tabindex="-1" role="basic" aria-hidden="true" style="left: 50%;top:50%;transform: translate(-50%, -50%);">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="choose_tittle">请为本次选择命名</h4>
+          </div>
+          <div class="modal-body">
+            <div class="portlet-body form">
+              <form class="form-horizontal" role="form">
+                <div class="form-body">
+                  <div class="form-group" style="padding-left: 5%;padding-right: 5% ">
+                      <input type="text" class="form-control" placeholder="" id="inputName">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn blue" id="submit_button" name="submit_button"> 确认</button>
+
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/iziToast.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.showLoading.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>  <!-- http://markusslima.github.io/bootstrap-filestyle/ -->
+<script type="text/javascript" src="index.js"></script>
+
+</html>
+
